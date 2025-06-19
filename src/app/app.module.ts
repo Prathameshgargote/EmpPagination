@@ -8,15 +8,16 @@ import { TableComponent } from './shared/componants/table/table.component';
 import { FormComponent } from './shared/componants/form/form.component';
 import { GetconfirmComponent } from './shared/componants/getconfirm/getconfirm.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './shared/material/material.module';
+import { InterceptorInterceptor } from './shared/servcies/interceptor.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     FormComponent,
-    GetconfirmComponent
+    GetconfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,9 +25,15 @@ import { MaterialModule } from './shared/material/material.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: InterceptorInterceptor,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

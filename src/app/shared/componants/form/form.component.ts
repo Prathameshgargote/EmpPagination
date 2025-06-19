@@ -68,7 +68,7 @@ export class FormComponent implements OnInit {
           DOB: this.empForm.value.DOB.toISOString(),
         };
         this._tableservice.AddEmplyee(newObj).subscribe(res=>{
-          this._matdailogRef.close({ ...newObj, id: res.name })
+          this._matdailogRef.close({ ...newObj })
           this._sanckbar.opensnackbar(`The ${newObj.fname} is Added Succussfully...!`)
 
         })

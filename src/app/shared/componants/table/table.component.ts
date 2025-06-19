@@ -100,7 +100,7 @@ export class TableComponent implements OnInit {
 
   Onremove(row: any) {
     let matdailogref = this._matdailog.open(GetconfirmComponent, {
-      width: '60%',
+      width: '400px',
     });
     matdailogref.afterClosed().subscribe((res) => {
       if (res) {
